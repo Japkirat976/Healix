@@ -28,7 +28,7 @@ body{
 }
 
 .nav-links a:hover{
-    color:#d171e4;
+    color:#c86ee8;
 }
 
 .hero{
@@ -56,7 +56,7 @@ body{
 .btn{
     display:inline-block;
 
-    background:#d171e4;
+    background:#c86ee8;
 
     color:white;
 
@@ -70,5 +70,74 @@ body{
 }
 
 .btn:hover{
-    background:#a55bb4;
+    background:#7c4591;
+}
+
+.login-container{
+    min-height:100vh;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+}
+
+.login-card{
+
+    width:100%;
+    max-width:420px;
+
+    background:white;
+
+    padding:40px;
+
+    border-radius:16px;
+
+    box-shadow:0 10px 25px rgba(0,0,0,0.1);
+
+    display:flex;
+    flex-direction:column;
+
+    gap:20px;
+}
+
+.subtitle{
+    color:#666;
+    text-align:center;
+}
+
+.form-group{
+    display:flex;
+    flex-direction:column;
+
+    gap:8px;
+}
+
+.form-group input{
+
+    padding:12px;
+
+    border:1px solid #ccc;
+
+    border-radius:8px;
+
+    font-size:16px;
+}
+
+.signup-link{
+    text-align:center;
+}
+
+.signup-link a{
+    color:#c86ee8;
+    text-decoration:none;
+}
+
+#errorMessage{
+    color:red;
+    font-size:14px;
+}
+
+.login-title{
+    text-align:center;
 }
