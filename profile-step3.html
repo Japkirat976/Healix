@@ -1,0 +1,133 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Fitness Profile | Healix</title>
+
+    <link rel="stylesheet" href="css/style.css">
+</head>
+
+<body>
+
+    <div class="login-container">
+
+        <form class="login-card" id="fitnessForm">
+
+            <h1>Fitness Profile</h1>
+
+            <p class="subtitle">
+                Help us understand your lifestyle.
+            </p>
+
+            <div class="form-group">
+
+                <label for="activityLevel">
+                    Activity Level
+                </label>
+
+                <select id="activityLevel">
+
+                    <option value="">
+                        Select Activity Level
+                    </option>
+
+                    <option value="Sedentary">
+                        Sedentary
+                    </option>
+
+                    <option value="Lightly Active">
+                        Lightly Active
+                    </option>
+
+                    <option value="Moderately Active">
+                        Moderately Active
+                    </option>
+
+                    <option value="Very Active">
+                        Very Active
+                    </option>
+
+                </select>
+
+            </div>
+
+            <div class="form-group">
+
+                <label>
+                    Equipment Available
+                </label>
+
+                <div class="checkbox-group">
+
+                    <label>
+                        <input type="checkbox" value="Dumbbells">
+                        Dumbbells
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Resistance Bands">
+                        Resistance Bands
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Yoga Mat">
+                        Yoga Mat
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Pull Up Bar">
+                        Pull Up Bar
+                    </label>
+
+                    <label>
+                        <input type="checkbox" value="Full Gym">
+                        Full Gym
+                    </label>
+
+                </div>
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="occupation">
+                    Occupation
+                </label>
+
+                <input
+                    type="text"
+                    id="occupation"
+                    placeholder="Student, Software Engineer..."
+                >
+
+            </div>
+
+            <div class="form-group">
+
+                <label for="lifestyle">
+                    Lifestyle
+                </label>
+
+                <textarea
+                    id="lifestyle"
+                    rows="4"
+                    placeholder="Describe your daily activity..."
+                ></textarea>
+
+            </div>
+
+            <p id="errorMessage"></p>
+
+            <button type="submit" class="btn">
+                Continue
+            </button>
+
+        </form>
+
+    </div>
+
+    <script src="js/profile-step3.js"></script>
+
+</body>
+</html>

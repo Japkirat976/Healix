@@ -66,5 +66,8 @@ signupForm.addEventListener(
         errorMessage.textContent = "";
 
         alert("Sign Up Successful!");
+
+        window.location.href =
+        "profile-step1.html";
     }
 );
