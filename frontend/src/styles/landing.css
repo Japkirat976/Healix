@@ -1,0 +1,59 @@
+.navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding: 1.5rem 3rem;
+}
+
+.logo {
+  color: #A855F7;
+}
+
+.nav-links {
+  display: flex;
+  gap: 1.5rem;
+}
+
+.nav-links a {
+  text-decoration: none;
+  color: #1F2937;
+  font-weight: 500;
+}
+
+.hero {
+  text-align: center;
+
+  margin-top: 4rem;
+
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.hero h2 {
+  font-size: 3rem;
+}
+
+.hero p {
+  max-width: 600px;
+  margin: auto;
+  color: #6B7280;
+}
+
+.btn {
+  width: fit-content;
+
+  margin: auto;
+
+  text-decoration: none;
+
+  background: #C084FC;
+  color: white;
+
+  padding: 12px 24px;
+
+  border-radius: 10px;
+
+  font-weight: 600;
+}
