@@ -11,8 +11,7 @@ function BasicInfo() {
     height: "",
     weight: "",
     gender: "",
-    goalWeight: "",
-    activityLevel: ""
+    goalWeight: ""
   });
 
   const navigate = useNavigate();
@@ -91,14 +90,6 @@ function BasicInfo() {
           value={formData.goalWeight}
           onChange={handleChange}
           placeholder="Enter your goal weight in kg"
-        />
-
-        <Select
-          label="Activity Level"
-          name="activityLevel"
-          value={formData.activityLevel}
-          onChange={handleChange}
-          options={["Sedentary", "Lightly Active", "Moderately Active", "Very Active", "Extra Active"]}
         />
 
         <PrimaryButton
