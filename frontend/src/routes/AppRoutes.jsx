@@ -5,9 +5,9 @@ import Login from "../pages/Login";
 import Signup from "../pages/Signup";
 
 import BasicInfo from "../pages/BasicInfo";
-import MedicalInfo from "../pages/MedicalInfo";
+import Medical from "../pages/Medical";
 import Nutrition from "../pages/Nutrition";
-import FitnessLifestyle from "../pages/FitnessLifestyle";
+import Fitness from "../pages/Fitness";
 
 import HealthSummary from "../pages/HealthSummary";
 import Dashboard from "../pages/Dashboard";
@@ -23,7 +23,7 @@ function AppRoutes() {
 
       <Route path="/onboarding/basic" element={<BasicInfo />} />
 
-      <Route path="/onboarding/medical" element={<MedicalInfo />} />
+      <Route path="/onboarding/medical" element={<Medical />} />
 
       <Route
         path="/onboarding/nutrition"
@@ -32,7 +32,7 @@ function AppRoutes() {
 
       <Route
         path="/onboarding/fitness"
-        element={<FitnessLifestyle />}
+        element={<Fitness />}
       />
 
       <Route

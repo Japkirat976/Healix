@@ -1,36 +1,38 @@
-import { useState } from "react";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import UserDataContext from "../context/UserDataContext";
 import Input from "../components/Input";
 import PrimaryButton from "../components/PrimaryButton";
 import Select from "../components/Select";
 
 function BasicInfo() {
-  const [formData, setFormData] = useState({
-    name: "",
-    age: "",
-    height: "",
-    weight: "",
-    gender: "",
-    goalWeight: ""
-  });
+  const { userData, setUserData } =
+    useContext(UserDataContext);
 
   const navigate = useNavigate();
 
   function handleChange(e) {
     const { name, value } = e.target;
 
-    setFormData({
-      ...formData,
+    setUserData({
+      ...userData,
       [name]: value
     });
   }
 
   function handleNext() {
-    localStorage.setItem(
-      "healixBasicInfo",
-      JSON.stringify(formData)
-    );
-  
+    if (
+      !userData.name ||
+      !userData.age ||
+      !userData.height ||
+      !userData.weight ||
+      !userData.gender ||
+      !userData.goalWeight
+    ) {
+      alert("Please fill all fields");
+      return;
+    }
+
     navigate("/onboarding/medical");
   }
 
@@ -43,7 +45,7 @@ function BasicInfo() {
           label="Name"
           name="name"
           type="text"
-          value={formData.name}
+          value={userData.name}
           onChange={handleChange}
           placeholder="Enter your name"
         />
@@ -52,16 +54,24 @@ function BasicInfo() {
           label="Age"
           name="age"
           type="number"
-          value={formData.age}
+          value={userData.age}
           onChange={handleChange}
           placeholder="Enter your age"
+        />
+
+        <Select
+          label="Gender"
+          name="gender"
+          value={userData.gender}
+          onChange={handleChange}
+          options={["Female", "Male", "Other"]}
         />
 
         <Input
           label="Height (cm)"
           name="height"
           type="number"
-          value={formData.height}
+          value={userData.height}
           onChange={handleChange}
           placeholder="Enter your height in cm"
         />
@@ -70,24 +80,16 @@ function BasicInfo() {
           label="Weight (kg)"
           name="weight"
           type="number"
-          value={formData.weight}
+          value={userData.weight}
           onChange={handleChange}
           placeholder="Enter your weight in kg"
-        />
-
-        <Select
-          label="Gender"
-          name="gender"
-          value={formData.gender}
-          onChange={handleChange}
-          options={["Female", "Male", "Other"]}
         />
 
         <Input
           label="Goal Weight (kg)"
           name="goalWeight"
           type="number"
-          value={formData.goalWeight}
+          value={userData.goalWeight}
           onChange={handleChange}
           placeholder="Enter your goal weight in kg"
         />

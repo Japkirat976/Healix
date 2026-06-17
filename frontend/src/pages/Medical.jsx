@@ -1,17 +1,14 @@
-import { useState } from "react";
-import Checkbox from "../components/Checkbox";
-import PrimaryButton from "../components/PrimaryButton";
 import { useNavigate } from "react-router-dom";
+import { useContext } from "react";
+import Select from "../components/Select";
+import UserDataContext from "../context/UserDataContext";
+import PrimaryButton from "../components/PrimaryButton";
+import Checkbox from "../components/Checkbox";
 
 function MedicalInfo() {
   const navigate = useNavigate();
 
-  const [medicalData, setMedicalData] = useState({
-    medicalConditions: [],
-    medications: "",
-    allergies: "",
-    hasReports: "No"
-  });
+  const { userData, setUserData } = useContext(UserDataContext);
 
   const conditions = [
     "PCOS",
@@ -22,20 +19,20 @@ function MedicalInfo() {
 
   function handleConditionChange(condition) {
     if (
-      medicalData.medicalConditions.includes(condition)
+      userData.medicalConditions.includes(condition)
     ) {
-      setMedicalData({
-        ...medicalData,
+      setUserData({
+        ...userData,
         medicalConditions:
-          medicalData.medicalConditions.filter(
+          userData.medicalConditions.filter(
             (item) => item !== condition
           )
       });
     } else {
-      setMedicalData({
-        ...medicalData,
+      setUserData({
+        ...userData,
         medicalConditions: [
-          ...medicalData.medicalConditions,
+          ...userData.medicalConditions,
           condition
         ]
       });
@@ -43,11 +40,6 @@ function MedicalInfo() {
   }
 
   function handleNext() {
-    localStorage.setItem(
-      "healixMedicalInfo",
-      JSON.stringify(medicalData)
-    );
-
     navigate("/onboarding/nutrition");
   }
 
@@ -66,7 +58,7 @@ function MedicalInfo() {
           <Checkbox
             key={condition}
             label={condition}
-            checked={medicalData.medicalConditions.includes(
+            checked={userData.medicalConditions.includes(
               condition
             )}
             onChange={() =>
@@ -79,10 +71,10 @@ function MedicalInfo() {
           <label>Current Medications</label>
 
           <textarea
-            value={medicalData.medications}
+            value={userData.medications}
             onChange={(e) =>
-              setMedicalData({
-                ...medicalData,
+              setUserData({
+                ...userData,
                 medications: e.target.value
               })
             }
@@ -90,20 +82,19 @@ function MedicalInfo() {
           />
         </div>
 
-        <div className="input-group">
-          <label>Allergies</label>
-
-          <textarea
-            value={medicalData.allergies}
-            onChange={(e) =>
-              setMedicalData({
-                ...medicalData,
-                allergies: e.target.value
-              })
-            }
-            placeholder="List any allergies"
-          />
-        </div>
+      <div className="input-group">
+        <Select
+          label="Do you have any medical reports?"
+          value={userData.hasReports}
+          onChange={(e) =>
+            setUserData({
+              ...userData,
+              hasReports: e.target.value
+            })
+          }
+          options={["Yes", "No"]}
+        />
+      </div>
 
         <PrimaryButton
           text="Next →"

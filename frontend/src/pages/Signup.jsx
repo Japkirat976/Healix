@@ -1,34 +1,80 @@
-import { useState } from "react";
+import { useState } from "react"
 import { useNavigate } from "react-router-dom";
-
+import { useContext } from "react";
+import UserDataContext from "../context/UserDataContext";
 import Input from "../components/Input";
 import PrimaryButton from "../components/PrimaryButton";
 
 function Signup() {
   const navigate = useNavigate();
 
-  const [formData, setFormData] = useState({
-    name: "",
-    email: "",
+  const [passwordData, setPasswordData] = useState({
     password: "",
     confirmPassword: ""
   });
 
+  const { userData, setUserData } = useContext(UserDataContext);
+
   function handleSignup() {
+
     if (
-      formData.password !== formData.confirmPassword
+      !userData.username ||
+      !userData.email ||
+      !passwordData.password ||
+      !passwordData.confirmPassword
+    ) {
+      alert("All fields are required");
+      return;
+    }
+  
+    const emailRegex =
+      /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+  
+    if (!emailRegex.test(userData.email)) {
+      alert("Please enter a valid email");
+      return;
+    }
+  
+    const passwordRegex =
+      /^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&]).{8,}$/;
+  
+    if (!passwordRegex.test(passwordData.password)) {
+      alert(
+        "Password must contain at least 8 characters, one uppercase letter, one lowercase letter, one number and one special symbol"
+      );
+      return;
+    }
+  
+    if (
+      passwordData.password !==
+      passwordData.confirmPassword
     ) {
       alert("Passwords do not match");
       return;
     }
 
+    const existingUser =
+      JSON.parse(localStorage.getItem("healixUser"));
+      
+    if (
+      existingUser &&
+      existingUser.email === userData.email
+    ) {
+      alert("An account with this email already exists");
+      return;
+    }
+  
     localStorage.setItem(
       "healixUser",
-      JSON.stringify(formData)
+      JSON.stringify({
+        username: userData.username,
+        email: userData.email,
+        password: passwordData.password
+      })
     );
-
+  
     alert("Account Created Successfully");
-
+  
     navigate("/onboarding/basic");
   }
 
@@ -38,25 +84,25 @@ function Signup() {
         <h1>Create Account</h1>
 
         <Input
-          label="Name"
+          label="Username"
           type="text"
-          value={formData.name}
+          value={userData.username}
           onChange={(e) =>
-            setFormData({
-              ...formData,
-              name: e.target.value
+            setUserData({
+              ...userData,
+              username: e.target.value
             })
           }
-          placeholder="Enter your name"
+          placeholder="Enter your username"
         />
 
         <Input
           label="Email"
           type="email"
-          value={formData.email}
+          value={userData.email}
           onChange={(e) =>
-            setFormData({
-              ...formData,
+            setUserData({
+              ...userData,
               email: e.target.value
             })
           }
@@ -66,10 +112,10 @@ function Signup() {
         <Input
           label="Password"
           type="password"
-          value={formData.password}
+          value={passwordData.password}
           onChange={(e) =>
-            setFormData({
-              ...formData,
+            setPasswordData({
+              ...passwordData,
               password: e.target.value
             })
           }
@@ -79,10 +125,10 @@ function Signup() {
         <Input
           label="Confirm Password"
           type="password"
-          value={formData.confirmPassword}
+          value={passwordData.confirmPassword}
           onChange={(e) =>
-            setFormData({
-              ...formData,
+            setPasswordData({
+              ...passwordData,
               confirmPassword: e.target.value
             })
           }

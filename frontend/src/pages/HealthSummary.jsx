@@ -1,21 +1,13 @@
+import { useContext } from "react";
 import { useNavigate } from "react-router-dom";
+import UserDataContext from "../context/UserDataContext";
 import PrimaryButton from "../components/PrimaryButton";
 import "../styles/healthSummary.css";
 
 function HealthSummary() {
   const navigate = useNavigate();
 
-  const basicInfo =
-    JSON.parse(localStorage.getItem("healixBasicInfo")) || {};
-
-  const medicalInfo =
-    JSON.parse(localStorage.getItem("healixMedicalInfo")) || {};
-
-  const nutritionInfo =
-    JSON.parse(localStorage.getItem("healixNutritionInfo")) || {};
-
-  const fitnessInfo =
-    JSON.parse(localStorage.getItem("healixFitnessInfo")) || {};
+  const { userData } = useContext(UserDataContext);
 
   function handleContinue() {
     navigate("/dashboard");
@@ -42,27 +34,27 @@ function HealthSummary() {
 
           <div className="summary-row">
             <strong>Name</strong>
-            <span>{basicInfo.name}</span>
+            <span>{userData.name}</span>
           </div>
 
           <div className="summary-row">
             <strong>Age</strong>
-            <span>{basicInfo.age}</span>
+            <span>{userData.age}</span>
           </div>
 
           <div className="summary-row">
             <strong>Height</strong>
-            <span>{basicInfo.height} cm</span>
+            <span>{userData.height} cm</span>
           </div>
 
           <div className="summary-row">
             <strong>Weight</strong>
-            <span>{basicInfo.weight} kg</span>
+            <span>{userData.weight} kg</span>
           </div>
 
           <div className="summary-row">
             <strong>Goal Weight</strong>
-            <span>{basicInfo.goalWeight} kg</span>
+            <span>{userData.goalWeight} kg</span>
           </div>
         </div>
 
@@ -74,18 +66,18 @@ function HealthSummary() {
           <div className="summary-row">
             <strong>Conditions</strong>
             <span>
-              {medicalInfo.medicalConditions?.join(", ") || "None"}
+              {userData.medicalConditions?.join(", ") || "None"}
             </span>
           </div>
 
           <div className="summary-row">
             <strong>Medications</strong>
-            <span>{medicalInfo.medications || "None"}</span>
+            <span>{userData.medications || "None"}</span>
           </div>
 
           <div className="summary-row">
-            <strong>Allergies</strong>
-            <span>{medicalInfo.allergies || "None"}</span>
+            <strong>Medical Reports</strong>
+            <span>{userData.hasReports || "None"}</span>
           </div>
         </div>
 
@@ -96,23 +88,23 @@ function HealthSummary() {
 
           <div className="summary-row">
             <strong>Diet Type</strong>
-            <span>{nutritionInfo.dietType}</span>
+            <span>{userData.dietType}</span>
           </div>
 
           <div className="summary-row">
             <strong>Meals Per Day</strong>
-            <span>{nutritionInfo.mealsPerDay}</span>
+            <span>{userData.mealsPerDay}</span>
           </div>
 
           <div className="summary-row">
             <strong>Water Intake</strong>
-            <span>{nutritionInfo.waterIntake} L</span>
+            <span>{userData.waterIntake} L</span>
           </div>
 
           <div className="summary-row">
             <strong>Goals</strong>
             <span>
-              {nutritionInfo.goals?.join(", ") || "None"}
+              {userData.goals?.join(", ") || "None"}
             </span>
           </div>
         </div>
@@ -124,29 +116,29 @@ function HealthSummary() {
 
           <div className="summary-row">
             <strong>Exercise Frequency</strong>
-            <span>{fitnessInfo.exerciseFrequency}</span>
+            <span>{userData.exerciseFrequency}</span>
           </div>
 
           <div className="summary-row">
             <strong>Sleep Hours</strong>
-            <span>{fitnessInfo.sleepHours}</span>
+            <span>{userData.sleepHours}</span>
           </div>
 
           <div className="summary-row">
             <strong>Stress Level</strong>
-            <span>{fitnessInfo.stressLevel}</span>
+            <span>{userData.stressLevel}</span>
           </div>
 
           <div className="summary-row">
             <strong>Fitness Goals</strong>
             <span>
-              {fitnessInfo.fitnessGoals?.join(", ") || "None"}
+              {userData.fitnessGoals?.join(", ") || "None"}
             </span>
           </div>
 
           <div className="summary-row">
             <strong>Daily Steps Goal</strong>
-            <span>{fitnessInfo.dailySteps}</span>
+            <span>{userData.dailySteps}</span>
           </div>
         </div>
 
