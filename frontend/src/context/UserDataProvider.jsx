@@ -18,14 +18,14 @@ export const UserDataProvider = ({ children }) => {
     
       medicalConditions: [],
       medications: "",
-      hasReports: "No",
+      hasReports: false,
     
       dietType: "",
       mealsPerDay: "",
       waterIntake: "",
-      foodAllergies: "",
-      likedFoods: "",
-      dislikedFoods: "",
+      foodAllergies: [],
+      likedFoods: [],
+      dislikedFoods: [],
       monthlyFoodBudget: "",
     
       exerciseFrequency: "",
